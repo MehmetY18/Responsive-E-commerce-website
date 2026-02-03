@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erkek | Alt Giyim</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Genel Sıfırlama ve Temel Stil */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* ÜRÜN IZGARASI (GRID) Düzeni */
+.product-grid {
+    display: grid;
+    /* 4 sütunu otomatik ve eşit genişlikte oluşturur */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px; /* Ürünler arasındaki boşluk */
+    max-width: 1400px; /* Sayfanın maksimum genişliği */
+    margin: 0 auto; /* Sayfayı ortalama */
+}
+
+/* ÜRÜN KARTI Stili */
+.product-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+
+.product-card:hover {
+    transform: translateY(-5px); /* Hafif yukarı kaldırma efekti */
+    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+}
+
+
+.product-card img {
+    width: 100%; /* Resmin kart genişliğini kaplaması */
+    height: auto;
+    max-height: 250px;
+    object-fit: cover; /* Resmi kırpmadan alana sığdırma */
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.product-info {
+    padding: 10px 0;
+}
+
+.product-name {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 5px;
+    height: 3em; /* Ürün isimleri iki satıra taşsa bile kart yüksekliğini sabit tutmaya yardımcı olur */
+    overflow: hidden;
+}
+
+.product-price {
+    font-size: 1.2em;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.add-to-cart {
+    background-color: rgb(16, 126, 194);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 100%;
+    /* GİZLEME KURALLARI */
+    opacity: 0; /* Saydamlığı sıfırla */
+    visibility: hidden; /* Erişilebilirliği engelle */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Geçiş efekti ekle */
+}
+
+.add-to-cart:hover {
+    background-color: #218838;
+}
+
+/* Genel Bakış Butonu Stili ve Gizleme */
+.product-view{
+    background-color: #000000; /* Mavi renk */
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 0;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 95%; /* Kartın genişliğine yakın */
+    margin: 5px 0;
+    margin-bottom: 200px;
+    
+    /* GİZLEME KURALLARI */
+    opacity: 0; /* Saydamlığı sıfırla */
+    visibility: hidden; /* Erişilebilirliği engelle */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Geçiş efekti ekle */
+    
+    /* Konumlandırma (isteğe bağlı, daha iyi bir görünüm için) */
+    position: absolute;
+    bottom: 55px; /* Sepete Ekle butonunun biraz üstüne yerleştir */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.product-card:hover .add-to-cart {
+    opacity: 1; /* Görünür yap */
+    visibility: visible; /* Erişilebilir yap */
+}
+
+.add-to-cart:hover{
+    background-color: #494949;
+    color: white;
+}
+
+/* Footer Stili */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: 0.9em;
+}
+
+
+/* Ana Kapsayıcı: Filtre Çubuğu ve İçeriği Yan Yana Getirir */
+.page-content {
+    display: flex; /* Flexbox ile yan yana düzenleme */
+    gap: 30px; /* Filtre çubuğu ile ürün ızgarası arasındaki boşluk */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Filtre Çubuğu Stili */
+.filter-sidebar {
+    width: 250px; /* Filtre çubuğu sabit genişliği */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    align-self: flex-start; /* İçerik akışı az olsa bile üstte kalmasını sağlar */
+    position: sticky; /* Sayfayı kaydırırken filtre çubuğunu sabitlemek için */
+    top: 20px; /* Sabitlenme mesafesi */
+}
+
+.filter-sidebar h2 {
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.filter-group h3 {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.filter-group label {
+    display: block; /* Her filtre seçeneğini alt alta listeler */
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 0.95em;
+    color: #444;
+}
+
+.filter-group input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #007bff; /* Checkbox rengini değiştirir */
+}
+
+/* Filtreleme Butonları */
+.apply-filters, .clear-filters {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.apply-filters {
+    background-color: #007bff;
+    color: white;
+}
+
+.clear-filters {
+    background-color: #dc3545;
+    color: white;
+}
+
+.apply-filters:hover, .clear-filters:hover {
+    opacity: 0.9;
+}
+
+
+
+.product-grid {
+    /* Eski kuralı koruyoruz, ancak ızgaranın esnek kalmasını sağlamak için flex-grow: 1 eklenmeli */
+    flex-grow: 1; /* Kalan tüm alanı kaplamasını sağlar */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px; 
+    /* max-width ve margin: auto kaldırıldı çünkü .page-content yönetiyor */
+    margin: 0; 
+}
+
+/* RESPONSIVE DÜZENLEME (Küçük ekranlarda filtreyi üste al) */
+@media (max-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) { /* Tabletlerde filtre çubuğu üste geçer */
+    .page-content {
+        flex-direction: column; /* Öğeleri alt alta diz */
+        gap: 20px;
+    }
+    
+    .filter-sidebar {
+        width: 100%; /* Filtre çubuğu tam genişlik olur */
+        position: static; /* Artık sabitlenmez */
+        top: auto;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="images/NewLogoBlack.png" alt="Logo" class="logo-img">
+        </a>
+        <ul>
+            <li><a href="ürünler.html">Ürünler</a></li>
+            <!--Erkek Giyim Bölümü-->
+            <li><a href="erkek-giyim.html">Erkek Giyim</a>
+            <ul>
+                <li><a href="erkek-ust-giyim.html">Üst Giyim</a>
+                <ul>
+                    <li><a href="erkek-tisort.html">Tişört</a></li>
+                    <li><a href="erkek-gomlek.html">Gömlek</a></li>
+                    <li><a href="erkek-ceket.html">Ceket</a></li>
+                </ul>
+                </li>
+
+                <li><a href="erkek-alt-giyim.html">Alt Giyim</a>
+                <ul>
+                    <li><a href="erkek-pantolon.html">Pantolon</a></li>
+                  
+                </ul>
+                </li>
+            </ul>
+            </li>
+             <!--Kadın Giyim Bölümü-->
+            <li><a href="kadin-giyim.html">Kadın Giyim</a>
+                 
+           <ul>
+                <li><a href="kadin-üst-giyim.html">Üst Giyim</a>
+                <ul>
+                    <li><a href="kadin-tisort.html">Tişört</a></li>
+                    <li><a href="kadin-gomlek.html">Gömlek</a></li>
+                    <li><a href="kadin-ceket.html">Ceket</a></li>
+                </ul>
+                </li>
+
+                <li><a href="kadin-alt-giyim.html">Alt Giyim</a>
+                <ul>
+                    <li><a href="kadin-pantolon.html">Pantolon</a></li>
+                    
+                </ul>
+                </li>
+            
+            </li>
+        </ul>
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+        </ul>
+
+
+    </nav>
+    
+    <header>
+        <h1>Erkek Alt Giyim Koleksiyonu</h1>
+    </header>
+
+    
+        <div class="page-content"> 
+
+        <aside class="filter-sidebar">
+            <h2>Filtreler 🔍</h2>
+
+            <div class="filter-group">
+                <h3>Ürün Tipi</h3>
+                <label><input type="checkbox" name="type" value="Pantolon"> Pantolon</label>
+                <label><input type="checkbox" name="type" value="Jeans"> Jeans</label>
+                
+            </div>
+            
+            <div class="filter-group">
+                <h3>Renk</h3>
+                <label><input type="checkbox" name="color" value="siyah"> Siyah</label>
+                <label><input type="checkbox" name="color" value="beyaz"> Beyaz</label>
+                <label><input type="checkbox" name="color" value="mavi"> Mavi</label>
+                <label><input type="checkbox" name="color" value="gri"> Gri</label>
+            </div>
+            
+            <div class="filter-group">
+                <h3>Beden</h3>
+                <label><input type="checkbox" name="size" value="s"> S</label>
+                <label><input type="checkbox" name="size" value="m"> M</label>
+                <label><input type="checkbox" name="size" value="l"> L</label>
+                <label><input type="checkbox" name="size" value="xl"> XL</label>
+            </div>
+
+            <button class="apply-filters">Filtrele</button>
+            <button class="clear-filters">Temizle</button>
+
+        </aside>
+
+    <main class="product-grid">
+       <div class="product-card">
+            <a href="siyah-kargo-pantolon.html"><img src="Products/sehajpal-singh-vO4JyCv4KUs-unsplash.jpg" alt="Siyah Kargo Pantolon"></a>
+            <div class="product-info">
+                <h3 class="product-name">Siyah Kargo Pantolon</h3>
+                <p class="product-price">1.649,99₺</p>
+                <div class="urun-rating">
+                             <div class="yildizlar">
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz ">★</span>
+                            <span class="yildiz">★</span>
+                        </div>
+                            <span class="rating-sayisi">(1300)</span>
+                        </div>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            </div>
+
+             <div class="product-card">
+            <a href="siyah-pantolon.html"><img src="Products/kyle-loftus-d5GlpSOAzzg-unsplash.jpg" alt="Siyah  Pantolon"></a>
+            <div class="product-info">
+                <h3 class="product-name">Siyah Pantolon</h3>
+                <p class="product-price">1.349,99₺</p>
+                <div class="urun-rating">
+                             <div class="yildizlar">
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz">★</span>
+                        </div>
+                            <span class="rating-sayisi">(1000)</span>
+                        </div>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            </div>
+
+
+            <div class="product-card">
+            <a href="beyaz-pantolon.html"><img src="Products/oswald-elsaboath-768hvLCqotM-unsplash.jpg" alt="Beyaz Pantolon"></a>
+            <div class="product-info">
+                <h3 class="product-name">Beyaz Pantolon</h3>
+                <p class="product-price">1.349,99₺</p>
+                <div class="urun-rating">
+                             <div class="yildizlar">
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz ">★</span>
+                            <span class="yildiz">★</span>
+                        </div>
+                            <span class="rating-sayisi">(1300)</span>
+                        </div>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            </div>
+        
+
+            <div class="product-card">
+            <a href="bej-pantolon.html"><img src="Products/redd-francisco-jC7nVH_Sw8k-unsplash.jpg" alt="Beyaz Pantolon"></a>
+            <div class="product-info">
+                <h3 class="product-name">Bej Pantolon</h3>
+                <p class="product-price">1.349,99₺</p>
+                <div class="urun-rating">
+                             <div class="yildizlar">
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz ">★</span>
+                            <span class="yildiz">★</span>
+                        </div>
+                            <span class="rating-sayisi">(1300)</span>
+                        </div>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            </div>
+
+
+        </main>
+</body>
+</html>

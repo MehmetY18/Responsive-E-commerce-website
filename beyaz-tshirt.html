@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyaz Tişört </title>
+        <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            
+        }
+
+        .product-detail {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .product-content {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .product-images {
+            flex: 1;
+            min-width: 300px;
+        
+        }
+
+        .main-image {
+            width: 100%;
+            height: 700px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+
+        }
+
+
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover {
+            border-color: #007bff;
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .price-container {
+            margin-bottom: 20px;
+        }
+
+        .original-price {
+            font-size: 20px;
+            color: #7f8c8d;
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+
+        .discounted-price {
+            font-size: 28px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .discount-percentage {
+            background: rgb(16, 126, 194);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .savings-info {
+            background: #147dcd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .savings-text {
+            color: white;
+            font-weight: bold;
+        }
+
+        .stock-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stock-badge {
+            background: rgb(16, 126, 194);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .stock-warning {
+            background: #f39c12;
+        }
+
+        /* Beden Seçimi Stilleri */
+        .size-selector {
+            margin-bottom: 25px;
+        }
+
+        .size-selector label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            min-width: 60px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .size-option:hover {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+
+        .size-option.selected {
+            border-color: #3498db;
+            background: #3498db;
+            color: white;
+        }
+
+        .size-option.disabled {
+            background: #f8f9fa;
+            color: #bdc3c7;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .size-option.disabled:hover {
+            border-color: #ddd;
+            background: #f8f9fa;
+        }
+
+        .size-guide {
+            margin-top: 10px;
+        }
+
+        .size-guide-link {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .size-guide-link:hover {
+            text-decoration: underline;
+        }
+
+        .product-description {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .product-features {
+            margin-bottom: 20px;
+        }
+
+        .product-features h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .product-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .product-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-features li:before {
+            content: "✓ ";
+            color: rgb(16, 126, 194);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .quantity-selector {
+            margin-bottom: 20px;
+        }
+
+        .quantity-selector label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .quantity-input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+
+        .product-meta {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .meta-item {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .meta-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* YORUMLAR BÖLÜMÜ */
+        .reviews-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .reviews-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .reviews-title {
+            font-size: 24px;
+            color: #2c3e50;
+        }
+
+        .rating-summary {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .average-rating {
+            text-align: center;
+        }
+
+        .rating-score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .rating-stars {
+            color: #ffc107;
+            font-size: 20px;
+            margin: 5px 0;
+        }
+
+        .rating-count {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .rating-bars {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .bar-label {
+            width: 30px;
+            font-size: 14px;
+        }
+
+        .bar-container {
+            flex: 1;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: #3498db;
+        }
+
+        /* Yorum Listesi */
+        .reviews-list {
+            margin-bottom: 30px; /* Bu container içindeki tüm yorumlar otomatik olarak alt alta dizilir */
+        }
+
+        .review-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+            /* Her review-item block-level element olduğu için otomatik alt alta dizilir */
+        }
+
+        .review-header {
+         display: flex;           /* Flex container */
+        justify-content: between; /* İçeriği yatayda dağıt */
+        align-items: start;      /* İçeriği dikeyde hizala */
+        margin-bottom: 10px;
+        flex-wrap: wrap;         /* Küçük ekranlarda alt satıra geç */
+        gap: 10px;               /* Elemanlar arası boşluk */
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .review-date {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .review-rating {
+            color: #ffc107;
+        }
+
+        .review-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .review-text {
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .review-helpful {
+            display: flex;
+            gap: 15px;
+        }
+
+        .helpful-btn {
+            background: none;
+            border: none;
+            color: #3498db;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .helpful-btn:hover {
+            color: #2980b9;
+        }
+
+        /* Yorum Formu */
+        .review-form {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .form-title {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 5px;
+        }
+
+        .star {
+            font-size: 24px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #ffc107;
+        }
+
+        .form-submit {
+            background: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .form-submit:hover {
+            background: #2980b9;
+        }
+
+
+        
+    .product-grid {
+    display: grid;
+    /* 4 sütunu otomatik ve eşit genişlikte oluşturur */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px; /* Ürünler arasındaki boşluk */
+    max-width: 1400px; /* Sayfanın maksimum genişliği */
+    margin: 0 auto; /* Sayfayı ortalama */
+    
+}
+
+/* ÜRÜN KARTI Stili */
+.product-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+
+.product-card:hover {
+    transform: translateY(-5px); /* Hafif yukarı kaldırma efekti */
+    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+}
+
+
+.product-card img {
+    width: 100%; /* Resmin kart genişliğini kaplaması */
+    height: auto;
+    max-height: 250px;
+    object-fit: cover; /* Resmi kırpmadan alana sığdırma */
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.product-info {
+    padding: 10px 0;
+}
+
+.product-name {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 5px;
+    height: 3em; /* Ürün isimleri iki satıra taşsa bile kart yüksekliğini sabit tutmaya yardımcı olur */
+    overflow: hidden;
+}
+
+.product-price {
+    font-size: 1.2em;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.add-to-cart {
+    background-color: rgb(16, 126, 194);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 100%;
+    /* GİZLEME KURALLARI */
+    opacity: 0; /* Saydamlığı sıfırla */
+    visibility: hidden; /* Erişilebilirliği engelle */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Geçiş efekti ekle */
+    margin-top: 30px;
+}
+
+.add-to-cart:hover {
+    background-color: #218838;
+}
+/* Genel Bakış Butonu Stili ve Gizleme */
+.product-view{
+    background-color: #000000; /* Mavi renk */
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 0;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 95%; /* Kartın genişliğine yakın */
+    margin: 5px 0;
+    margin-bottom: 200px;
+    
+    /* GİZLEME KURALLARI */
+    opacity: 0; /* Saydamlığı sıfırla */
+    visibility: hidden; /* Erişilebilirliği engelle */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Geçiş efekti ekle */
+    
+    /* Konumlandırma (isteğe bağlı, daha iyi bir görünüm için) */
+    position: absolute;
+    bottom: 55px; /* Sepete Ekle butonunun biraz üstüne yerleştir */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.product-card:hover .add-to-cart {
+    opacity: 1; /* Görünür yap */
+    visibility: visible; /* Erişilebilir yap */
+}
+
+.add-to-cart:hover{
+    background-color: #494949;
+    color: white;
+}
+
+
+.product-grid {
+    /* ızgaranın esnek kalmasını sağlamak için flex-grow: 1 eklenmeli */
+    flex-grow: 1; /* Kalan tüm alanı kaplamasını sağlar */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px; 
+    /* max-width ve margin: auto kaldırıldı çünkü .page-content yönetiyor */
+    margin: 0; 
+    align-items: center;
+    justify-content: center;
+    
+}
+
+/* RESPONSIVE DÜZENLEME (Küçük ekranlarda filtreyi üste al) */
+@media (max-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        margin-right: 50px;
+    }
+}
+
+@media (max-width: 900px) { /* Tabletlerde filtre çubuğu üste geçer */
+    .page-content {
+        flex-direction: column; /* Öğeleri alt alta diz */
+        gap: 20px;
+    }
+    
+    .filter-sidebar {
+        width: 100%; /* Filtre çubuğu tam genişlik olur */
+        position: static; /* Artık sabitlenmez */
+        top: auto;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+
+        @media (max-width: 768px) {
+            .product-content {
+                flex-direction: column;
+            }
+            
+            .product-images, .product-info {
+                min-width: 100%;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .size-options {
+                justify-content: center;
+            }
+            
+            .reviews-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .rating-summary {
+                flex-direction: column;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+<nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="images/NewLogoBlack.png" alt="Logo" class="logo-img">
+        </a>
+        <ul>
+            <li><a href="ürünler.html">Ürünler</a></li>
+            <!--Erkek Giyim Bölümü-->
+            <li><a href="erkek-giyim.html">Erkek Giyim</a>
+            <ul>
+                <li><a href="erkek-ust-giyim.html">Üst Giyim</a>
+                <ul>
+                    <li><a href="erkek-tisort.html">Tişört</a></li>
+                    <li><a href="erkek-gomlek.html">Gömlek</a></li>
+                    <li><a href="erkek-ceket.html">Ceket</a></li>
+                </ul>
+                </li>
+
+                <li><a href="erkek-alt-giyim.html">Alt Giyim</a>
+                <ul>
+                    <li><a href="erkek-pantolon.html">Pantolon</a></li>
+                    
+                </ul>
+                </li>
+            </ul>
+            </li>
+             <!--Kadın Giyim Bölümü-->
+            <li><a href="kadin-giyim.html">Kadın Giyim</a>
+                 
+           <ul>
+                <li><a href="kadin-üst-giyim.html">Üst Giyim</a>
+                <ul>
+                    <li><a href="kadin-tisort.html">Tişört</a></li>
+                    <li><a href="kadin-gomlek.html">Gömlek</a></li>
+                    <li><a href="kadin-ceket.html">Ceket</a></li>
+                </ul>
+                </li>
+
+                <li><a href="kadin-alt-giyim.html">Alt Giyim</a>
+                <ul>
+                    <li><a href="kadin-pantolon.html">Pantolon</a></li>
+                 
+                </ul>
+                </li>
+            
+            </li>
+        </ul>
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+        </ul>
+
+
+    </nav>
+
+
+    <div class="container">
+        <div class="product-detail">
+            <div class="product-content">
+                <!-- Ürün Görselleri -->
+                <div class="product-images">
+                    <img src="Products/anomaly-WWesmHEgXDs-unsplash.jpg" alt="Ürün Ana Görsel" class="main-image" id="mainImage">
+                    <div class="thumbnail-container">
+                       
+                        <img src="Products/anomaly-WWesmHEgXDs-unsplash.jpg" alt="Görsel 3 " class="thumbnail" onclick="changeImage(this.src)">
+                     
+                    </div>
+                </div>
+
+                <!-- Ürün Bilgileri -->
+                <div class="product-info">
+                    <h1 class="product-title">Beyaz Tişört</h1>
+                    
+                    <!-- Fiyat Alanı -->
+                    <div class="price-container">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <span class="original-price"> 1.100,99 ₺</span>
+                            <span class="discounted-price">825,74₺</span>
+                            <span class="discount-percentage">%25 İNDİRİM</span>
+                        </div>
+                        <div class="savings-info">
+                            <span class="savings-text">🎉 Bu ürünü alarak 275,24 ₺ tasarruf edin!</span>
+                        </div>
+                    </div>
+
+                    <!-- Stok Bilgisi -->
+                    <div class="stock-info">
+                        <span class="stock-badge">Stokta</span>
+                        <small>Son 500 ürün</small>
+                    </div>
+
+                    <!-- Beden Seçimi -->
+                    <div class="size-selector">
+                        <label for="size">Beden Seçiniz:</label>
+                        <div class="size-options">
+                            <div class="size-option" data-size="S">S</div>
+                            <div class="size-option" data-size="M">M</div>
+                            <div class="size-option" data-size="L">L</div>
+                            <div class="size-option" data-size="XL">XL</div>
+                            <div class="size-option disabled" data-size="XXL">XXL</div>
+                        </div>
+                        <div class="size-guide">
+                            <a href="bedentablosu.html" class="size-guide-link">📏 Beden Tablosu için tıklayın</a>
+                        </div>
+                    </div>
+
+                    <div class="product-description">
+                        <p>%100 pamuk malzemesiyle üretilen bu tişört, nefes alabilen yapısı ve yumuşak dokusuyla günlük kullanım için ideal. Vücut hatlarına uyum sağlayan kesimiyle konfor ve stil bir arada.</p>
+                    </div>
+
+                    <div class="product-features">
+                        <h3>Özellikler</h3>
+                        <ul>
+                            <li>100% Pamuk</li>
+                            <li>Nefes Alabilen Kumaş</li>
+                            <li>Yıkama Sonrası Çekmez</li>
+                            <li>Ekolojik Boya Kullanılmıştır</li>
+                            <li>Vücut Uyumlu Kesim</li>
+                            <li>Yüksek Kalite Baskı</li>
+                        </ul>
+                    </div>
+
+                    <div class="quantity-selector">
+                        <label for="quantity">Adet:</label>
+                        <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="10">
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="addToCart">Sepete Ekle</button>
+                        <button class="btn btn-secondary">Favorilere Ekle</button>
+                    </div>
+
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Kategori:</span> Giyim > Tişört
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Ürün Kodu:</span> TSH-2024-PRE
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Kargo:</span> Ücretsiz Kargo • 1-3 iş günü
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Malzeme:</span> %100 Pamuk
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+       <!-- YORUMLAR BÖLÜMÜ -->
+        <div class="reviews-section">
+            <div class="reviews-header">
+                <h2 class="reviews-title">Müşteri Yorumları</h2>
+                <div class="rating-summary">
+                    <div class="average-rating">
+                        <div class="rating-score">4.5</div>
+                        <div class="rating-stars">★★★★★</div>
+                        <div class="rating-count">127 değerlendirme</div>
+                    </div>
+                    <div class="rating-bars">
+                        <div class="rating-bar">
+                            <span class="bar-label">5★</span>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 70%;"></div>
+                            </div>
+                            <span class="bar-count">89</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="bar-label">4★</span>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 20%;"></div>
+                            </div>
+                            <span class="bar-count">25</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="bar-label">3★</span>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 5%;"></div>
+                            </div>
+                            <span class="bar-count">8</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="bar-label">2★</span>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 3%;"></div>
+                            </div>
+                            <span class="bar-count">4</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="bar-label">1★</span>
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: 2%;"></div>
+                            </div>
+                            <span class="bar-count">1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yorum Listesi -->
+            <div class="reviews-list">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">E</div>
+                            <div>
+                                <div class="reviewer-name">Eren Yılmaz</div>
+                                <div class="review-date">15 Kasım 2025</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <div class="review-title">Çok kaliteli ve rahat!</div>
+                    <div class="review-text">
+                        Bu tişört gerçekten çok kaliteli. Kumaşı yumuşak ve nefes alabilir. Beden olarak tam uydu, yıkandıktan sonra da formunu korudu. Kesinlikle tavsiye ederim.
+                    </div>
+                    <div class="review-helpful">
+                        <button class="helpful-btn">👍 Yararlı (24)</button>
+                        <button class="helpful-btn">👎 Yararlı Değil (2)</button>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">M</div>
+                            <div>
+                                <div class="reviewer-name">Mehmet Demir</div>
+                                <div class="review-date">10 Kasım 2024</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★☆</div>
+                    </div>
+                    <div class="review-title">Güzel ürün ama...</div>
+                    <div class="review-text">
+                        Genel olarak kaliteli bir ürün. Kumaşı güzel ve dikimi iyi. Ancak renkler fotoğrafta göründüğünden biraz daha farklı geldi. Yine de memnunum.
+                    </div>
+                    <div class="review-helpful">
+                        <button class="helpful-btn">👍 Yararlı (15)</button>
+                        <button class="helpful-btn">👎 Yararlı Değil (3)</button>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">E</div>
+                            <div>
+                                <div class="reviewer-name">Elif Şahin</div>
+                                <div class="review-date">5 Kasım 2020</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <div class="review-title">Harika!</div>
+                    <div class="review-text">
+                        Çok rahat ve şık bir tişört. Günlük kullanım için perfect. Yıkandıkça yumuşuyor ve formunu kaybetmiyor. Fiyatı da çok uygun, kesinlikle değer.
+                    </div>
+                    <div class="review-helpful">
+                        <button class="helpful-btn">👍 Yararlı (31)</button>
+                        <button class="helpful-btn">👎 Yararlı Değil (1)</button>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">M</div>
+                            <div>
+                                <div class="reviewer-name">Mert Yıldırım</div>
+                                <div class="review-date">5 Kasım 2024</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <div class="review-title">Harika!</div>
+                    <div class="review-text">
+                        Ürünü yeni aldım çok şık duruyor paketlemede harikaydı Teşekkürler Vetements
+                    </div>
+                    <div class="review-helpful">
+                        <button class="helpful-btn">👍 Yararlı (31)</button>
+                        <button class="helpful-btn">👎 Yararlı Değil (1)</button>
+                    </div>
+                </div>
+
+                  <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">Y</div>
+                            <div>
+                                <div class="reviewer-name">Yıldız Türk</div>
+                                <div class="review-date">5 Kasım 2024</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <div class="review-title">Harika!</div>
+                    <div class="review-text">
+                        Ürünü yeni aldım çok şık duruyor paketlemede harikaydı Teşekkürler Vetements
+                    </div>
+                    <div class="review-helpful">
+                        <button class="helpful-btn">👍 Yararlı (100)</button>
+                        <button class="helpful-btn">👎 Yararlı Değil (1)</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Yorum Formu -->
+            <div class="review-form">
+                <h3 class="form-title">Yorumunuzu Yazın</h3>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label>Değerlendirme</label>
+                        <div class="star-rating" id="starRating">
+                            <span class="star" data-rating="1">★</span>
+                            <span class="star" data-rating="2">★</span>
+                            <span class="star" data-rating="3">★</span>
+                            <span class="star" data-rating="4">★</span>
+                            <span class="star" data-rating="5">★</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewTitle">Başlık</label>
+                        <input type="text" id="reviewTitle" class="form-input" placeholder="Yorumunuz için bir başlık yazın">
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewText">Yorumunuz</label>
+                        <textarea id="reviewText" class="form-textarea" placeholder="Ürün hakkındaki deneyimlerinizi paylaşın..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewerName">Adınız</label>
+                        <input type="text" id="reviewerName" class="form-input" placeholder="Adınızı girin">
+                    </div>
+                    <button type="submit" class="form-submit">Yorumu Gönder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+    <section class="avantajlar">
+        <div class="container">
+            <div class="avantaj-grid">
+                <div class="avantaj">
+                    <i class="ri-truck-line"></i>
+                    <h4>Ücretsiz Kargo</h4>
+                    <p>150₺ ve üzeri alışverişlerde</p>
+                </div>
+                <div class="avantaj">
+                    <i class="ri-shield-check-line"></i>
+                    <h4>Güvenli Alışveriş</h4>
+                    <p>256-bit SSL şifreleme</p>
+                </div>
+                <div class="avantaj">
+                    <i class="ri-exchange-line"></i>
+                    <h4>Kolay İade</h4>
+                    <p>30 gün içinde iade</p>
+                </div>
+                <div class="avantaj">
+                    <i class="ri-customer-service-line"></i>
+                    <h4>7/24 Destek</h4>
+                    <p>Canlı müşteri hizmetleri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+       
+
+
+    <!-- FOOTER -->
+     <div class="stick2"></div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-bolum">
+                    <img src="images/NewLogoBlack.png" alt="Logo" class="footer-logo">
+                    <p>Moda ve stil dünyasına hoş geldiniz.</p>
+                </div>
+                <div class="footer-bolum">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                        <li><a href="sss.html">SSS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-bolum">
+                    <h4>Müşteri Hizmetleri</h4>
+                    <ul>
+                        <li><a href="iade.html">İade Politikası</a></li>
+                        <li><a href="teslimat.html">Teslimat Bilgileri</a></li>
+                        <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+                    </ul>
+                </div>
+                <div class="footer-bolum">
+                    <h4>İletişim</h4>
+                    <p>📞 0850 850 85 85</p>
+                    <p>✉️ info@modasitesi.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="copyrg">
+            <p>&#169; Vetements All rights reserverd.</p>
+        </div>
+    </footer>
+
+    
+
+
+
+    <script>
+        //Resim değiştirme
+        let selectedSize = null;
+
+        function changeImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+
+        // Beden seçimi işlevi
+        document.querySelectorAll('.size-option:not(.disabled)').forEach(option => {
+            option.addEventListener('click', function() {
+                // Önceki seçimi temizle
+                document.querySelectorAll('.size-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Yeni seçimi işaretle
+                this.classList.add('selected');
+                selectedSize = this.getAttribute('data-size');
+                
+                // Seçilen bedeni konsola yazdır (test için)
+                console.log('Seçilen beden:', selectedSize);
+            });
+        });
+
+        // Sepete ekleme işlevi
+        document.getElementById('addToCart').addEventListener('click', function() {
+            const quantity = document.getElementById('quantity').value;
+            
+            if (!selectedSize) {
+                alert('Lütfen bir beden seçiniz!');
+                return;
+            }
+
+            const price = document.querySelector('.discounted-price').textContent;
+            alert(quantity + ' adet ' + selectedSize + ' beden ürün sepete eklendi!\nToplam: ' + (parseInt(quantity) * 149.99).toFixed(2) + ' TL');
+        });
+
+        // Favorilere ekleme
+        document.querySelector('.btn-secondary').addEventListener('click', function() {
+            if (!selectedSize) {
+                alert('Lütfen önce bir beden seçiniz!');
+                return;
+            }
+            alert(selectedSize + ' beden ürün favorilere eklendi! ❤️');
+        });
+
+         // Yıldız rating sistemi
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.getAttribute('data-rating'));
+                userRating = rating;
+                
+                document.querySelectorAll('.star').forEach(s => {
+                    s.classList.remove('active');
+                });
+                
+                document.querySelectorAll('.star').forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Yorum formu gönderimi
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (userRating === 0) {
+                alert('Lütfen puan verin!');
+                return;
+            }
+
+            const title = document.getElementById('reviewTitle').value;
+            const text = document.getElementById('reviewText').value;
+            const name = document.getElementById('reviewerName').value;
+
+            if (!title || !text || !name) {
+                alert('Lütfen tüm alanları doldurun!');
+                return;
+            }
+
+            alert('Yorumunuz için teşekkür ederiz! Yorumunuz onaylandıktan sonra yayınlanacaktır.');
+            this.reset();
+            document.querySelectorAll('.star').forEach(star => {
+                star.classList.remove('active');
+            });
+            userRating = 0;
+        });
+
+        // Yararlı butonları
+        document.querySelectorAll('.helpful-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const currentText = this.textContent;
+                const matches = currentText.match(/\((\d+)\)/);
+                if (matches) {
+                    const count = parseInt(matches[1]) + 1;
+                    this.textContent = currentText.replace(/\(\d+\)/, `(${count})`);
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

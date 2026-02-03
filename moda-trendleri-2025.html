@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 Moda Trendleri</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+.blog {
+    display: flex;
+    flex-direction: column; /* Mobil için sütun düzeni gerekli */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
+    max-width: 1400px; 
+    margin: 0 auto; /* Ortalaması için */
+}
+
+/* Resim konteynerleri için flexbox düzeni */
+.pro-left, .pro-right {
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranlarda alt alta gelmesi için */
+    justify-content: center;
+    gap: 20px; 
+    margin: 20px 0;
+    width: 100%;
+}
+
+.area {
+    background-color: rgb(255, 255, 255);
+    max-width: 1000px; 
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 20px 0;
+    padding: 30px;
+    box-sizing: border-box;
+    order: 2; /* Orta sıraya gelsin */
+}
+
+.content {
+    margin: 0 auto;
+    padding: 20px 0;
+    max-width: 800px; 
+}
+
+.content h2, .content h3, .content h4 {
+    text-align: left;
+    color: #333;
+}
+
+.content h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.content h3 {
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.content h4 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #34495e;
+}
+
+.content p {
+    color: #666;
+    text-align: justify;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Marka ismini vurgulamak için */
+.brand-name {
+    color: #e44d26;
+    font-weight: bold;
+}
+
+.imgbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.imgbox img {
+    height: 300px;
+    width: auto;
+    max-width: 100%; /* Resimlerin taşmasını önle */
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    object-fit: cover; /* Resim oranını koru */
+    transition: transform 0.3s ease;
+}
+
+.imgbox img:hover {
+    transform: scale(1.03); 
+}
+
+
+@media screen and (min-width: 1024px) {
+    .blog {
+        flex-direction: row; /* Büyük ekranlarda yatay düzen */
+        flex-wrap: wrap; /* Taşma durumunda alt satıra geç */
+        align-items: flex-start; /* Üstten hizala */
+    }
+    
+    .pro-left, .pro-right {
+        flex: 0 0 200px; /* Sabit genişlik */
+        flex-direction: column; /* Resimleri dikey sırala */
+        align-items: center;
+        margin: 0 10px;
+    }
+    
+    .area {
+        flex: 1; /* Kalan alanı kaplasın */
+        min-width: 600px; /* Minimum genişlik */
+        margin: 0 20px;
+        order: 1; /* Orta sırada kalsın */
+    }
+    
+    .imgbox img {
+        height: 280px; /* Büyük ekranlarda biraz küçült */
+        width: 200px; /* Sabit genişlik */
+        object-fit: cover;
+    }
+}
+
+/* Tablet boyutları için (768px ve altı) */
+@media screen and (max-width: 768px) {
+    .blog {
+        padding: 15px;
+    }
+    
+    .area {
+        width: 100%;
+        padding: 20px;
+        margin: 15px 0;
+    }
+    
+    .content {
+        padding: 15px 0;
+    }
+    
+    .content h2 {
+        font-size: 1.6em;
+    }
+    
+    .content h3 {
+        font-size: 1.3em;
+        margin-top: 25px;
+    }
+    
+    .content h4 {
+        font-size: 1.1em;
+    }
+    
+    .content p {
+        font-size: 0.95em;
+        text-align: left;
+    }
+    
+    .pro-left, .pro-right {
+        gap: 15px;
+    }
+    
+    .imgbox img {
+        height: 250px;
+        width: 180px;
+    }
+}
+
+/* Mobil boyutları için (480px ve altı) */
+@media screen and (max-width: 480px) {
+    .blog {
+        padding: 10px;
+    }
+    
+    .area {
+        padding: 15px;
+        border-radius: 15px;
+        margin: 10px 0;
+    }
+    
+    .content h2 {
+        font-size: 1.4em;
+        text-align: center;
+    }
+    
+    .content h3 {
+        font-size: 1.2em;
+        text-align: left;
+    }
+    
+    .content h4 {
+        font-size: 1em;
+    }
+    
+    .content p {
+        font-size: 0.9em;
+        text-align: left;
+    }
+    
+    .pro-left, .pro-right {
+        gap: 10px;
+    }
+    
+    .imgbox {
+        margin: 5px;
+    }
+    
+    .imgbox img {
+        height: 200px;
+        width: 150px;
+    }
+    
+    
+    .pro-left, .pro-right {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 sütun */
+        gap: 10px;
+    }
+}
+
+/* Çok küçük mobil ekranlar için (360px ve altı) */
+@media screen and (max-width: 360px) {
+    .content h2 {
+        font-size: 1.3em;
+    }
+    
+    .content h3 {
+        font-size: 1.1em;
+    }
+    
+    .content h4 {
+        font-size: 0.95em;
+    }
+    
+    .content p {
+        font-size: 0.85em;
+    }
+    
+    .imgbox img {
+        height: 180px;
+        width: 135px;
+    }
+    
+    .pro-left, .pro-right {
+        grid-template-columns: 1fr; /* Çok küçük ekranlarda 1 sütun */
+    }
+}
+
+/* İçerik listeleri için */
+.content ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.content li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* Son paragrafa özel stil */
+.content p:last-of-type {
+    margin-bottom: 0;
+}
+</style>
+</head>
+<body>
+     <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="images/NewLogoBlack.png" alt="Logo" class="logo-img">
+        </a>
+        <ul>
+            <li><a href="ürünler.html">Ürünler</a></li>
+            <!--Erkek Giyim Bölümü-->
+            <li><a href="erkek-giyim.html">Erkek Giyim</a>
+            <ul>
+                <li><a href="erkek-ust-giyim.html">Üst Giyim</a>
+                <ul>
+                    <li><a href="erkek-tisort.html">Tişört</a></li>
+                    <li><a href="erkek-gomlek.html">Gömlek</a></li>
+                    <li><a href="erkek-ceket.html">Ceket</a></li>
+                </ul>
+                </li>
+
+                <li><a href="erkek-alt-giyim.html">Alt Giyim</a>
+                <ul>
+                    <li><a href="erkek-pantolon.html">Pantolon</a></li>
+                  
+                </ul>
+                </li>
+            </ul>
+            </li>
+             <!--Kadın Giyim Bölümü-->
+            <li><a href="kadin-giyim.html">Kadın Giyim</a>
+                 
+           <ul>
+                <li><a href="kadin-üst-giyim.html">Üst Giyim</a>
+                <ul>
+                    <li><a href="kadin-tisort.html">Tişört</a></li>
+                    <li><a href="kadin-gomlek.html">Gömlek</a></li>
+                    <li><a href="kadin-ceket.html">Ceket</a></li>
+                </ul>
+                </li>
+
+                <li><a href="kadin-alt-giyim.html">Alt Giyim</a>
+                <ul>
+                    <li><a href="kadin-pantolon.html">Pantolon</a></li>
+                   
+                </ul>
+                </li>
+            
+            </li>
+        </ul>
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+        </ul>
+
+
+    </nav>
+   <div class="blog">
+    <div class="pro-left">
+        <div class="imgbox">
+            <img src="Products/alexandra-iva-aPIN2_ITQ2M-unsplash.jpg" alt="Foto1">
+        </div>
+
+        <div class="imgbox">
+            <img src="Products/ali-ahmadi-O9psaJC-iFg-unsplash.jpg" alt="Foto1">
+        </div>
+
+        <div class="imgbox">
+            <img src="Products/bundo-kim-zkHv9pvrE9U-unsplash.jpg" alt="Foto1">
+        </div>
+
+       
+
+    </div>
+    <div class="area">
+        <div class="content">
+            <h2>2025 İlkbahar/Yaz Moda Trendlerine Genel Bakış</h2>
+            <p>2025 İlkbahar/Yaz sezonu, feminen detaylarla modern çizgilerin buluştuğu bir dönem olarak karşımıza çıkıyor. Soft pastel tonlar, doğal kumaşlar ve rahat kesimler, bu sezona damgasını vuruyor. Özellikle sokak modasında bol paça pantolonlar, oversize blazerlar ve uzun etek gibi rahat ama şık parçalar öne çıkıyor. Ayrıca, sustainability (sürdürülebilirlik) de bu yılın en önemli kavramlarından biri olacak. Moda dünyasında markalar, çevreye duyarlı üretim süreçlerine odaklanırken, şıklığı da unutmuyor.</p>
+            
+            <h3>2025 İlkbahar/Yaz Trendleri: Öne Çıkan Parçalar</h3>
+            
+            <h4>1. Bol Paça Pantolonlar</h4>
+            <p>Bu sezonun en gözde parçalarından biri, bol paça pantolonlar. Özellikle pastel renklerde ve doğal kumaşlardan üretilen bol paça pantolonlar, rahatlıkla şıklığı birleştiren tasarımlar sunuyor. <span class="brand-name">Vetements</span>'ın ilkbahar/yaz koleksiyonunda yer alan bol paça pantolonlar, her ortamda rahatça giyilebilecek ve şıklığınızı artıracak mükemmel parçalardır.</p>
+            
+            <h4>2. Oversize Blazerlar</h4>
+            <p>Modern kadınların vazgeçilmezi olan oversize blazerlar, 2025 İlkbahar/Yaz sezonunda da etkisini sürdürüyor. Hem günlük hayat hem de iş yaşamı için ideal olan bu blazerlar, rahatlığı ve şıklığı bir arada sunuyor. Özellikle <span class="brand-name">Vetements</span> markasının oversize kesimlerinde, ince ve hafif kumaşlar ile zamansız bir şıklık yakalamak mümkün.</p>
+            
+            <h4>3. Pastel Tonlar</h4>
+            <p>2025 İlkbahar/Yaz koleksiyonlarında, pastel tonlarının hakimiyetine şahit olacağız. Açık mavi, pembe, lavanta ve mint yeşili gibi yumuşak renkler, sezona damgasını vuruyor. Bu renkler, hem günlük yaşamda hem de özel davetlerde şıklığınızı tamamlayacak.</p>
+            
+            <h4>4. Çiçek Desenli Elbiseler</h4>
+            <p>Çiçek desenleri, yaz aylarının vazgeçilmezi olmayı sürdürüyor. 2025 İlkbahar/Yaz sezonunda, büyük çiçek desenleriyle zenginleştirilmiş elbiseler öne çıkıyor. Hafif kumaşlar ve bol kesimler, yazın rahatlığına vurgu yapıyor. <span class="brand-name">Vetements</span> koleksiyonunda, çiçek desenli elbiseler, kadınsılığı ön plana çıkaran zarif tasarımlar sunuyor.</p>
+            
+            <h3>2025 İlkbahar/Yaz Trendlerinde Detaylar</h3>
+            
+            <h4>1. Etek ve Elbise Uzunlukları</h4>
+            <p>2025'te etek ve elbise uzunlukları oldukça dikkat çekici olacak. Özellikle midi boy etekler ve elbiseler, zarif bir görünüm sunacak. Yüksek bel etekler, feminen bir siluet yaratırken, ince bel vurgusu da dikkat çekecek. <span class="brand-name">Vetements</span> koleksiyonundaki midi etekler, zarif bir şıklık sunarak bu trende öncülük ediyor.</p>
+            
+            <h4>2. Canlı Renkler ve Geometrik Desenler</h4>
+            <p>Geometrik desenler ve canlı renkler, 2025 İlkbahar/Yaz trendleri içinde öne çıkacak. Özellikle cesur renk kombinasyonları ve grafik desenler, stil sahibi kadınların tercih ettiği detaylar arasında yer alacak. <span class="brand-name">Vetements</span>'ın geometrik desenli bluzları ve elbiseleri, modern kadının dinamizmini yansıtacak.</p>
+            
+            <h4>3.Yüksek Bel Pantolonlar</h4>
+            <p>Yüksek bel pantolonlar, 2025 İlkbahar/Yaz sezonunun vazgeçilmezlerinden biri olacak. Hem rahat hem de şık bir siluet sunan bu pantolonlar, her bedene uygun tasarımlarla karşımıza çıkacak. Redesign’ın yüksek bel pantolonları, klasik şıklığı modern bir dokunuşla birleştiriyor.</p>
+            
+            <h4>4.Şeffaf Kumaşlar ve Detaylar</h4>
+            <p>Bu sezonda şeffaf kumaşlar, modanın en dikkat çekici unsurlarından biri olacak. Özellikle elbise ve bluzlarda, hafif transparan detaylar ile modern ve zarif bir hava yaratılacak. Redesign koleksiyonunda, şeffaf kumaşlar, şıklığınızı ön plana çıkaran zarif detaylar sunuyor.</p>
+            
+            <h3>2025 İlkbahar/Yaz Trendlerine Uygun Kombin Önerileri</h3>
+            <p>2025 İlkbahar/Yaz sezonu, rahatlıkla şıklığı birleştirmenizi sağlayacak pek çok trend sunuyor. İşte bu sezonun öne çıkan trendlerine uygun, şık ve modern kombinler:</p>
+            
+            <h4>Bol Paça Pantolon + Oversize Blazer Kombini</h4>
+            <p>Bu sezonun en güçlü trendlerinden biri olan bol paça pantolonlar, rahatlıkla şıklığı bir araya getiriyor. Oversize blazer ceket ile kombinlendiğinde modern ve sofistike bir hava yaratıyor. Altına sade bir beyaz tişört veya gömlek ekleyerek rahat, ama şık bir görünüm elde edebilirsiniz. Bu kombin, hem iş hayatı hem de günlük kullanım için mükemmel bir seçim.</p>
+
+            <h4>Çiçek Desenli Elbise + Minimal Aksesuarlar</h4>
+            <p>İlkbahar/Yaz sezonunun en favori parçalarından biri olan çiçek desenli elbiseler, feminen ve enerjik bir stil sunuyor. Renkli çiçek desenleriyle dolu elbiselerinizi minimal bir şapka, zarif bir kolye ve sade bir çanta ile tamamlayarak şık bir görünüm yaratabilirsiniz. Bu tarz, özellikle yaz aylarının neşeli havasını yansıtan mükemmel bir seçenek.</p>
+            
+            <h4>Midi Boy Etek + Şeffaf Kumaş Bluz</h4>
+            <p>Midi boy etekler, zarif ve şık bir görünüm sunuyor. Özellikle şeffaf kumaşlardan yapılmış bluzlarla kombinlendiğinde hem modern hem de feminen bir stil oluşturulabilir. Bu kombin, yaz akşamları ya da özel davetler için ideal bir tercih.</p>
+            
+            <h4>Beyaz T-shirt + Yüksek Bel Pantolon</h4>
+            <p>Sade ama şık bir kombin için beyaz t-shirt ve yüksek bel pantolon mükemmel bir ikili oluşturur. Yaz aylarında rahat bir şıklık arayanlar için ideal olan bu kombin, klasik ama trendy bir görünüm sağlar. T-shirt'ünüzü şık bir deri ayakkabı ve minimal aksesuarlarla tamamlayarak, gündelik yaşamda rahatlıkla şık görünebilirsiniz.</p>
+            
+            <h4>Büyük Desenli Ceket + Dar Paça Pantolon</h4>
+            <p>Büyük desenli ceketler, 2025 İlkbahar/Yaz sezonunun en dikkat çeken trendlerinden biri. Bu ceketleri, düz ve şık bir dar paça pantolonla kombinlediğinizde dikkat çekici ve sofistike bir stil oluşturabilirsiniz. Özellikle şık bir gece daveti veya özel bir etkinlik için oldukça uygun bir tercih olacaktır.</p>
+            
+            <h4>Gömlek Elbise + Sandalet</h4>
+            <p>Gömlek elbiseler, rahat ama şık bir görünüm elde etmek isteyenler için harika bir seçim. 2025 Yazı için oversized, uzun gömlek elbiseler ön planda. Şık bir sandaletle kombinlediğinizde ise stilinize zarif bir hava katabilirsiniz. Bu kombin, sıcak yaz günlerinde hem rahat hem de şık bir seçenek sunar.<br><br>
+
+            2025 İlkbahar/Yaz sezonu, şıklığı ve rahatlığı birleştiren harika trendlerle dolu. Redesign markasının sunduğu kaliteli ve modern koleksiyonlar, bu sezona uyum sağlamak isteyen her kadına hitap ediyor. Gardırobunuzu bu sezonun trendlerine uygun şekilde yenileyin ve tarzınızı bir adım ileriye taşıyın!</p>
+        </div>
+    </div>
+<div class="pro-right">
+        <div class="imgbox">
+            <img src="Products/engin-akyurt-5raPrOhbKQo-unsplash.jpg" alt="Foto1">
+        </div>
+
+        <div class="imgbox">
+            <img src="Products/gesphotoss-1i9K55ni5Dk-unsplash.jpg" alt="Foto1">
+        </div>
+
+        <div class="imgbox">
+            <img src="Products/kateryna-melnyk-LhHtL8WfDvc-unsplash.jpg" alt="Foto1">
+        </div>
+
+     
+
+    </div>
+    
+</div>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-bolum">
+                    <img src="images/NewLogoBlack.png" alt="Logo" class="footer-logo">
+                    <p>Moda ve stil dünyasına hoş geldiniz.</p>
+                </div>
+                <div class="footer-bolum">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                        <li><a href="sss.html">SSS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-bolum">
+                    <h4>Müşteri Hizmetleri</h4>
+                    <ul>
+                        <li><a href="iade.html">İade Politikası</a></li>
+                        <li><a href="teslimat.html">Teslimat Bilgileri</a></li>
+                        <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+                    </ul>
+                </div>
+                <div class="footer-bolum">
+                    <h4>İletişim</h4>
+                    <p>📞 0850 850 85 85</p>
+                    <p>✉️ info@vetements.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="copyrg">
+            <p>&#169; Vetements All rights reserverd.</p>
+        </div>
+    </footer>
+    
+
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--RATING STAR ICIN KULLANILDI-->
+    <title>Vetements | Fashion </title>
+<style>
+    .product-grid {
+    display: grid;
+    /* 4 sütunu otomatik ve eşit genişlikte oluşturur */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px; /* Ürünler arasındaki boşluk */
+    max-width: 1400px; /* Sayfanın maksimum genişliği */
+    margin: 0 auto; /* Sayfayı ortalama */
+    
+}
+
+/* ÜRÜN KARTI Stili */
+.product-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+
+.product-card:hover {
+    transform: translateY(-5px); /* Hafif yukarı kaldırma efekti */
+    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+}
+
+
+.product-card img {
+    width: 100%; /* Resmin kart genişliğini kaplaması */
+    height: auto;
+    max-height: 250px;
+    object-fit: cover; /* Resmi kırpmadan alana sığdırma */
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.product-info {
+    padding: 10px 0;
+}
+
+.product-name {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 5px;
+    height: 3em; /* Ürün isimleri iki satıra taşsa bile kart yüksekliğini sabit tutmaya yardımcı olur */
+    overflow: hidden;
+}
+
+.product-price {
+    font-size: 1.2em;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.add-to-cart {
+    background-color: rgb(16, 126, 194);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 100%;
+    /* GİZLEME KURALLARI */
+    opacity: 0; /* Saydamlığı sıfırla */
+    visibility: hidden; /* Erişilebilirliği engelle */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Geçiş efekti ekle */
+    margin-top: 30px;
+}
+
+.add-to-cart:hover {
+    background-color: #218838;
+}
+/* Genel Bakış Butonu Stili ve Gizleme */
+.product-view{
+    background-color: #000000; /* Mavi renk */
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 0;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 95%; /* Kartın genişliğine yakın */
+    margin: 5px 0;
+    margin-bottom: 200px;
+    
+    /* GİZLEME KURALLARI */
+    opacity: 0; /* Saydamlığı sıfırla */
+    visibility: hidden; /* Erişilebilirliği engelle */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Geçiş efekti ekle */
+    
+    /* Konumlandırma (isteğe bağlı, daha iyi bir görünüm için) */
+    position: absolute;
+    bottom: 55px; /* Sepete Ekle butonunun biraz üstüne yerleştir */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.product-card:hover .add-to-cart {
+    opacity: 1; /* Görünür yap */
+    visibility: visible; /* Erişilebilir yap */
+}
+
+.add-to-cart:hover{
+    background-color: #494949;
+    color: white;
+}
+
+
+.product-grid {
+    /* ızgaranın esnek kalmasını sağlamak için flex-grow: 1 eklenmeli */
+    flex-grow: 1; /* Kalan tüm alanı kaplamasını sağlar */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px; 
+    /* max-width ve margin: auto kaldırıldı çünkü .page-content yönetiyor */
+    margin: 0; 
+    align-items: center;
+    justify-content: center;
+    
+}
+
+/* RESPONSIVE DÜZENLEME (Küçük ekranlarda filtreyi üste al) */
+@media (max-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        margin-right: 50px;
+    }
+}
+
+@media (max-width: 900px) { /* Tabletlerde filtre çubuğu üste geçer */
+    .page-content {
+        flex-direction: column; /* Öğeleri alt alta diz */
+        gap: 20px;
+    }
+    
+    .filter-sidebar {
+        width: 100%; /* Filtre çubuğu tam genişlik olur */
+        position: static; /* Artık sabitlenmez */
+        top: auto;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="images/NewLogoBlack.png" alt="Logo" class="logo-img">
+        </a>
+        <ul>
+            <li><a href="ürünler.html">Ürünler</a></li>
+            <!--Erkek Giyim Bölümü-->
+            <li><a href="erkek-giyim.html">Erkek Giyim</a>
+            <ul>
+                <li><a href="erkek-ust-giyim.html">Üst Giyim</a>
+                <ul>
+                    <li><a href="erkek-tisort.html">Tişört</a></li>
+                    <li><a href="erkek-gomlek.html">Gömlek</a></li>
+                    <li><a href="erkek-ceket.html">Ceket</a></li>
+                </ul>
+                </li>
+
+                <li><a href="erkek-alt-giyim.html">Alt Giyim</a>
+                <ul>
+                    <li><a href="erkek-pantolon.html">Pantolon</a></li>
+                    
+                </ul>
+                </li>
+            </ul>
+            </li>
+             <!--Kadın Giyim Bölümü-->
+            <li><a href="kadin-giyim.html">Kadın Giyim</a>
+                 
+           <ul>
+                <li><a href="kadin-üst-giyim.html">Üst Giyim</a>
+                <ul>
+                    <li><a href="kadin-tisort.html">Tişört</a></li>
+                    <li><a href="kadin-gomlek.html">Gömlek</a></li>
+                    <li><a href="kadin-ceket.html">Ceket</a></li>
+                </ul>
+                </li>
+
+                <li><a href="kadin-alt-giyim.html">Alt Giyim</a>
+                <ul>
+                    <li><a href="kadin-pantolon.html">Pantolon</a></li>
+                    
+                </ul>
+                </li>
+            
+            </li>
+        </ul>
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+        </ul>
+
+
+    </nav>
+
+<div class="stick2">
+<p>uygun fiyata yüksek kalite</p>
+</div>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        
+        <div class="hero-content">
+            <h1>YENİ SEZONA ÖZEL KOLEKSİYON</h1>
+            <p>En yeni moda trendleri ve %25'e varan indirimlerle yeni yıla hazırlanın!</p>
+            <a href="ürünler.html" class="hero-button">Hemen Keşfet</a>
+        </div>
+    </section>
+
+ 
+    <!--Ana bölüm-->
+    <main class="container">
+        <h2>Popüler Ürünler</h2>       
+        <!--Vseriyon2.0-->
+        <section id="popular-products" class="product-grid">
+            <div class="product-card">
+            <a href="beyaz-baskili-tisort.html"><img src="images/Men T Shirt Mockup, Front View .png" alt="Beyaz Baskılı Tişört"></a>
+            <div class="product-info">
+                <h3 class="product-name">Beyaz Baskılı Tişört</h3>
+                <p class="product-price">825,74₺</p>
+                <div class="urun-rating">
+                             <div class="yildizlar">
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz">★</span>
+                        </div>
+                            <span class="rating-sayisi">(1005)</span>
+                        </div>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            </div>
+
+            <div class="product-card">
+            <a href="acik-kahve-kaban.html"><img src="Products/taras-chernus-iIjResyhhW0-unsplash.jpg" alt="Açık Kahverengi Kaban"></a>
+            <div class="product-info">
+                <h3 class="product-name">Açık Kahverengi Kaban</h3>
+                <p class="product-price">1.424,99₺</p>
+                <div class="urun-rating">
+                             <div class="yildizlar">
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                        </div>
+                            <span class="rating-sayisi">(1500)</span>
+                        </div>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            </div>
+
+            <div class="product-card">
+            <a href="cizgili-ceket.html"><img src="Products/kateryna-melnyk-LhHtL8WfDvc-unsplash.jpg" alt="Çizgili Ceket"></a>
+            <div class="product-info">
+                <h3 class="product-name">Çizgili Ceket</h3>
+                <p class="product-price">1.424,99₺</p>
+                <div class="urun-rating">
+                             <div class="yildizlar">
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                        </div>
+                            <span class="rating-sayisi">(2000)</span>
+                        </div>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            </div>
+
+            <div class="product-card">
+            <a href="siyah-kargo-pantolon.html"><img src="Products/sehajpal-singh-vO4JyCv4KUs-unsplash.jpg" alt="Siyah Kargo Pantolon"></a>
+            <div class="product-info">
+                <h3 class="product-name">Siyah Kargo Pantolon</h3>
+                <p class="product-price">1.649,99₺</p>
+                <div class="urun-rating">
+                             <div class="yildizlar">
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz ">★</span>
+                            <span class="yildiz">★</span>
+                        </div>
+                            <span class="rating-sayisi">(1300)</span>
+                        </div>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            </div>
+
+             <div class="product-card">
+            <a href="beyaz-baskili-sweatshirt.html"><img src="Products/Men Hoodie Mockup, Front View.png" alt="Beyaz Baskılı Sweatshirt"></a>
+            <div class="product-info">
+                <h3 class="product-name">Beyaz Baskılı Sweatshirt</h3>
+                <p class="product-price">1.424,99₺</p>
+                <div class="urun-rating">
+                             <div class="yildizlar">
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz">★</span>
+                        </div>
+                            <span class="rating-sayisi">(2010)</span>
+                        </div>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            </div>
+
+             <div class="product-card">
+            <a href="skull-sweatshirt.html"><img src="Products/syed-fahad-fHs068fqPjQ-unsplash.jpg" alt="Skull Sweatshirt"></a>
+            <div class="product-info">
+                <h3 class="product-name">Skull Sweatshirt</h3>
+                <p class="product-price">1.424,99₺</p>
+                <div class="urun-rating">
+                             <div class="yildizlar">
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz dolu">★</span>
+                            <span class="yildiz">★</span>
+                        </div>
+                            <span class="rating-sayisi">(2005)</span>
+                        </div>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            </div>
+
+            
+        </section>
+        
+<div class="stick3"></div>
+
+
+
+<!-- BLOG -->
+
+    <section class="blog">
+        <div class="container">
+            <h2>Moda Rehberi</h2>
+            <div class="blog-grid">
+                
+                <article class="blog-kart">
+                    <img src="images/naeim-jafari-mW3145wbwlw-unsplash.jpg" alt="Yaz Trendleri">
+                    <div class="blog-icerik">
+                        <h3>2025 Yaz Moda Trendleri</h3>
+                        <p>Bu yazın en trend parçaları ve kombin önerileri...</p>
+                        <a href="moda-trendleri-2025.html">Devamını Oku <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                </article>
+                <article class="blog-kart">
+                    <img src="images/hannah-morgan-ycVFts5Ma4s-unsplash.jpg" alt="Beden Kılavuzu">
+                    <div class="blog-icerik">
+                        <h3>Doğru Beden Seçimi</h3>
+                        <p>Mükemmel oturan kıyafetler için beden seçme rehberi...</p>
+                        <a href="bedentablosu.html">Devamını Oku <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- İNDİRİMLİ ÜRÜNLER -->
+    
+  
+
+
+    <!-- MÜŞTERİ YORUMLARI -->
+    <section class="yorumlar">
+        <div class="container">
+            <h2>Müşterilerimiz Ne Diyor?</h2>
+            <div class="yorum-grid">
+                <div class="yorum-kart">
+                    <div class="yildizlar">
+                        <span class="yildiz dolu">★</span>
+                        <span class="yildiz dolu">★</span>
+                        <span class="yildiz dolu">★</span>
+                        <span class="yildiz dolu">★</span>
+                        <span class="yildiz dolu">★</span>
+                    </div>
+                    <p>"Hızlı kargo ve kaliteli ürün! Kesinlikle tavsiye ederim."</p>
+                    <span class="musteri-ad">- Ahmet Y.</span>
+                </div>
+                <div class="yorum-kart">
+                    <div class="yildizlar">
+                        <span class="yildiz dolu">★</span>
+                        <span class="yildiz dolu">★</span>
+                        <span class="yildiz dolu">★</span>
+                        <span class="yildiz dolu">★</span>
+                        <span class="yildiz">★</span>
+                    </div>
+                    <p>"Ürünler göründüğü gibi geldi, beden konusunda yardımcı oldular."</p>
+                    <span class="musteri-ad">- Ayşe K.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+    
+<div class="stick3"></div>
+
+
+    <!-- İSTATİSTİKLER -->
+    <section class="istatistikler">
+        <div class="container">
+            <div class="istatistik-grid">
+                <div class="istatistik">
+                    <h3 data-count="10000">10.000+</h3>
+                    <p>Mutlu Müşteri</p>
+                </div>
+                <div class="istatistik">
+                    <h3 data-count="500">500+</h3>
+                    <p>Ürün Çeşidi</p>
+                </div>
+                <div class="istatistik">
+                    <h3 data-count="5">5 Yıl+</h3>
+                    <p>Deneyim</p>
+                </div>
+                <div class="istatistik">
+                    <h3 data-count="24">7/24</h3>
+                    <p>Müşteri Desteği</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-icerik">
+                <h2>Fırsatlardan İlk Sen Haberdar Ol!</h2>
+                <p>Özel indirimler ve yeni ürünler için kaydolun</p>
+                <form class="abonelik-formu">
+                    <input type="email" placeholder="E-posta adresiniz" required>
+                    <button type="submit">Abone Ol</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+                      <!-- AVANTAJLAR -->
+    <section class="avantajlar">
+        <div class="container">
+            <div class="avantaj-grid">
+                <div class="avantaj">
+                    <i class="ri-truck-line"></i>
+                    <h4>Ücretsiz Kargo</h4>
+                    <p>150₺ ve üzeri alışverişlerde</p>
+                </div>
+                <div class="avantaj">
+                    <i class="ri-shield-check-line"></i>
+                    <h4>Güvenli Alışveriş</h4>
+                    <p>256-bit SSL şifreleme</p>
+                </div>
+                <div class="avantaj">
+                    <i class="ri-exchange-line"></i>
+                    <h4>Kolay İade</h4>
+                    <p>30 gün içinde iade</p>
+                </div>
+                <div class="avantaj">
+                    <i class="ri-customer-service-line"></i>
+                    <h4>7/24 Destek</h4>
+                    <p>Canlı müşteri hizmetleri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SSS -->
+    <section class="sss">
+        <div class="container">
+            <h2>Sık Sorulan Sorular</h2>
+            <div class="sss-grid">
+                <div class="sss-item">
+                    <h4>Kargo süresi ne kadar?</h4>
+                    <p>2-3 iş günü içinde teslimat</p>
+                </div>
+                <div class="sss-item">
+                    <h4>İade politikası nedir?</h4>
+                    <p>30 gün içinde ücretsiz iade</p>
+                </div>
+                <div class="sss-item">
+                    <h4>Beden değişimi yapabilir miyim?</h4>
+                    <p>Evet, 14 gün içinde beden değişimi yapılabilir</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- FOOTER -->
+     <div class="stick2"></div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-bolum">
+                    <img src="images/NewLogoBlack.png" alt="Logo" class="footer-logo">
+                    <p>Moda ve stil dünyasına hoş geldiniz.</p>
+                </div>
+                <div class="footer-bolum">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                        <li><a href="sss.html">SSS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-bolum">
+                    <h4>Müşteri Hizmetleri</h4>
+                    <ul>
+                        <li><a href="iade.html">İade Politikası</a></li>
+                        <li><a href="teslimat.html">Teslimat Bilgileri</a></li>
+                        <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+                    </ul>
+                </div>
+                <div class="footer-bolum">
+                    <h4>İletişim</h4>
+                    <p>📞 0850 850 85 85</p>
+                    <p>✉️ info@vetements.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="copyrg">
+            <p>&#169; Vetements All rights reserverd.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
