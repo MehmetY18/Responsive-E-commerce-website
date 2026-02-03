@@ -107,7 +107,8 @@ MIT Lisansı - Açık kaynak kod, öğrenme ve portfolio için serbestçe kullan
 
 **Mehmet Yücel**  
 Bilgisayar Programcılığı Öğrencisi & Geliştirici
-⭐ **Bu demo projesini beğendiyseniz yıldız vermeyi unutmayın!**  
+⭐ **Bu demo projesini beğendiyseniz yıldız vermeyi unutmayın!** 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/mehmet-y%C3%BCcel-95b2a3264/)
 ---------------------------------------------------------------------
 
 
@@ -222,3 +223,4 @@ MIT License - Open source code, free to use for learning and portfolio.
 Computer Programming Student & Developer
 
 ⭐ **If you liked this demo project, don't forget to give it a star!**
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/mehmet-y%C3%BCcel-95b2a3264/)
