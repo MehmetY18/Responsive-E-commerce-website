@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Yatay kaydırmayı zorla kapatır */
+    margin: 0;
+    padding: 0;
+}
+
 body{
     font-family: 'Inter', 'Segoe UI', sans-serif;
     line-height: 1.6;
@@ -276,186 +283,13 @@ body{
 } */
 
 
-.section-benzer{
-    background-color: #ffffff;
-    height: 1200px;
-    
-
-    
-}
-
-.section-benzer h2{
-    margin-bottom: 2px solid #f4f4f4;
-    padding-bottom: 20px;
-    color: #565656;
-    /* margin-top: 60px; 0px veya geçerli bir değer girip hangisi güzelse onu yap */
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    height: 100px;
-
-}
-
-.pr img{
-    height: 300px;
-    width: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: 10px;
-}
-
-.pr h4{
-    margin: 15px 0 5px 0;
-    font-size: 16px;
-    color: #333;
-}
-
-.pr p{
-    margin: 5px 0 10px 0;
-    font-size: 18px;
-    font-weight: bold;
-    color:#004aad;
-}
-
-.checked {
-  color: orange;
-
-}
-
-
-.pr {
-    position: relative;
-    width: 290px;
-    height: 500px;
-    overflow: hidden;
-    border-radius: 15px;
-    background: white;
-    text-align: center;
-    padding: 15px;
-    border: 1px solid #f1f5f9;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    bottom: 60px;
-}
 
 
 
-.pr:hover img{
-     transform: scale(1.05);
-}
-
-.pr:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-}
-
-.pr:hover .urun-ozellikler {
-    top: 0;
-    opacity: 1;
-}
-
-.pr::after {
-    content: 'POPÜLER';
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ef4444;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 10px;
-    font-weight: bold;
-}
-
-
-.urun-aksiyonlar {
-    position: absolute;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    transition: all 0.4s ease;
-    opacity: 0;
-}
-
-.pr:hover .urun-aksiyonlar {
-    bottom: 0;
-    opacity: 1;
-}
-
-
-
-.benzer-urunler-pr{
-    position: relative;
-    width: 290px;
-    height: 500px;
-    overflow: hidden;
-    border-radius: 15px;
-    background: white;
-    text-align: center;
-    padding: 15px;
-    border: 1px solid #f1f5f9;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    bottom: 60px;
-    
-
-}
-
-
-.benzer-urunler-pr:hover img{
-     transform: scale(1.05);
-}
-
-.benzer-urunler-pr:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-}
-
-.benzer-urunler-pr:hover .urun-ozellikler {
-    top: 0;
-    opacity: 1;
-}
-
-/* .benzer-urunler-pr::after {
-    content: 'ÇOK SATAN';
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ef4444;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 10px;
-    font-weight: bold;
-} */
 
 .benzer-urunler-pr:hover .urun-aksiyonlar {
     bottom: 0;
     opacity: 1;
-}
-
-
-.benzer-urunler-pr img{
-    height: 250px;
-    width: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: 10px;
-}
-
-.benzer-urunler-pr h4{
-    margin: 15px 0 5px 0;
-    font-size: 16px;
-    color: #333;
-   
-}
-
-.benzer-urunler-pr p{
-    margin: 5px 0 10px 0;
-    font-size: 18px;
-    font-weight: bold;
-    color:#004aad;
 }
 
 
