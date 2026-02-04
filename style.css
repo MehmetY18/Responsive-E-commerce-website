@@ -1045,7 +1045,11 @@ body{
 
         @media (max-width: 768px) {
            
-
+            
+            .newsletter{
+                background-size: cover;
+                
+            }
             .menu-toggle {
                 display: block;
                 background: none;
@@ -1214,7 +1218,7 @@ body{
                     }
 
                     .hero {
-                        height: 40vh;
+                        height: 80vh;
                         min-height: 300px;
                         padding: 20px;
                     }
@@ -1387,5 +1391,3 @@ body{
 
 
     }
-
-
