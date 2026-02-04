@@ -243,7 +243,7 @@ body{
 }
 
 .section h2{
-    margin-bottom: 2px solid #f4f4f4;
+    border-bottom: 2px solid #f4f4f4;
     padding-bottom: 20px;
     color: #565656;
     margin-left: 120px; 
@@ -253,7 +253,7 @@ body{
 }
 
 .container h2 {
-    margin-bottom: 2px solid #f4f4f4;
+   
     margin-top: 50px;
     padding-bottom: 20px;
     color: #565656;
@@ -263,7 +263,7 @@ body{
     text-align: center;
 }
 
-#popular-products{
+/* #popular-products{
   
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -273,7 +273,7 @@ body{
     height: 1200px;
     
     
-}
+} */
 
 
 .section-benzer{
@@ -1013,25 +1013,26 @@ body{
 
 .alan {
     background-color: rgb(255, 255, 255);
-    max-width: 800px; /* width yerine max-width kullanıyoruz */
-    width: 90%; /* Ekran küçüldükçe yüzde olarak genişlik */
-    height: auto; /* Sabit height yerine auto */
-    min-height: 1080px; /* Minimum yükseklik */
+    max-width: 800px; 
+    width: 90%; 
+    height: auto; 
+    min-height: 1080px; 
     border-radius: 20px;
     margin: 0 auto; /* Ortalamak için */
-    padding: 20px; /* İçerik için padding ekliyoruz */
+    padding: 20px; 
     box-sizing: border-box; /* Padding'i width'e dahil et */
 }
 
 .icerik {
-    margin-left: 20px; /* Küçük ekranlar için azaltıyoruz */
-    margin-right: 20px; /* Sağ tarafta da boşluk ekliyoruz */
+    margin-left: 20px; 
+    margin-right: 20px; 
 }
 
 .icerik p {
     color: #666;
-    line-height: 1.6; /* Okunabilirliği artır */
+    line-height: 1.6; 
     text-align: justify; /* Metni iki yana yasla */
+       margin: 0 auto;
 }
 
 .icerik font {
@@ -1062,6 +1063,7 @@ body{
         width: 95%; 
         min-height: auto; 
         padding: 15px; 
+        margin: 0 auto;
     }
     
     .icerik {
@@ -1092,8 +1094,8 @@ body{
 
 @media screen and (max-width: 480px) {
     .alan {
-        width: 100%; /* Tam genişlik */
-        border-radius: 10px; /* Köşe yuvarlamayı azalt */
+        width: 100%; 
+        border-radius: 10px; 
         padding: 10px;
     }
     
@@ -1110,7 +1112,7 @@ body{
     
     .icerik h2 {
         font-size: 1.3em;
-        text-align: center; /* Başlığı ortala */
+        text-align: center; 
     }
     
     .icerik h3 {
@@ -1127,7 +1129,7 @@ body{
     }
     
     .icerik font {
-        font-size: 0.9em; /* İtalik yazıyı küçült */
+        font-size: 0.9em; 
     }
 }
 
@@ -1149,31 +1151,7 @@ body{
         font-size: 0.85em;
     }
 }
-/* RESPONSIVE */
-/* @media (max-width: 768px) {
-    .kategori-grid,
-    .avantaj-grid,
-    .yorum-grid,
-    .blog-grid,
-    .istatistik-grid,
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
 
-    }
-    
-    .abonelik-formu {
-        flex-direction: column;
-    }
-    
-    .marka-grid {
-        gap: 20px;
-    }
-    
-    .marka-logo {
-        padding: 15px 25px;
-    }
-} */
 
    /* RESPONSIVE MEDIA QUERIES */
         @media (max-width: 1200px) {

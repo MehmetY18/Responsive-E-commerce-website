@@ -133,7 +133,7 @@
     grid-template-columns: repeat(4, 1fr); 
     gap: 30px; 
     /* max-width ve margin: auto kaldırıldı çünkü .page-content yönetiyor */
-    margin: 0; 
+    margin: 0 auto; 
     align-items: center;
     justify-content: center;
     
@@ -143,7 +143,7 @@
 @media (max-width: 1200px) {
     .product-grid {
         grid-template-columns: repeat(3, 1fr);
-        margin-right: 50px;
+      
     }
 }
 
@@ -163,6 +163,27 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+@media (max-width: 400px) { 
+    .page-content {
+        flex-direction: column; /* Öğeleri alt alta diz */
+        gap: 20px;
+        
+    }
+    
+    .filter-sidebar {
+        width: 100%; /* Filtre çubuğu tam genişlik olur */
+        position: static; /* Artık sabitlenmez */
+        top: auto;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+       
+    }
+}
+
 
 </style>
 </head>
